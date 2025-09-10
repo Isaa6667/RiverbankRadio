@@ -4,7 +4,208 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Riverbank Radio</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* General Layout */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(135deg, #1e7fcb, #4fb0ff);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(135deg, #1e7fcb, #155a8d);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+      text-shadow: 0 0 20px rgba(255,255,255,0.6);
+      animation: glow 3s infinite alternate;
+    }
+    header p {
+      margin: 10px 0 0;
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #fff; }
+      to { text-shadow: 0 0 30px #ffeb3b; }
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 15px;
+      z-index: 10;
+    }
+    nav a {
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.1rem;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #ffeb3b;
+      left: 0;
+      bottom: -5px;
+      transition: 0.3s;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Content */
+    main {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    /* Player */
+    .player-box {
+      display: flex;
+      justify-content: center;
+      animation: fadeInUp 0.8s ease;
+    }
+    .player-box iframe {
+      border-radius: 15px;
+      width: 470px;
+      height: 145px;
+      border: none;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    }
+
+    /* Staff */
+    .staff-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .staff-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 25px;
+      width: 230px;
+      color: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 1s ease;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+    .staff-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .staff-card h4 {
+      margin: 0 0 10px;
+      font-size: 1.3rem;
+    }
+    .staff-card p {
+      margin: 0;
+      font-size: 1rem;
+      opacity: 0.85;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 20;
+      animation: fadeIn 0.4s ease;
+    }
+    .modal-content {
+      background: white;
+      color: #1e7fcb;
+      padding: 35px;
+      border-radius: 15px;
+      width: 320px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      animation: slideDown 0.5s ease;
+    }
+    .modal-content h3 {
+      margin-top: 0;
+    }
+    .modal-content input {
+      width: 90%;
+      padding: 12px;
+      margin: 12px 0;
+      border: 2px solid #1e7fcb;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    button {
+      background: #1e7fcb;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      margin-top: 12px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background: #155a8d;
+      transform: scale(1.05);
+    }
+    .close-btn {
+      background: #ff4c4c;
+    }
+    .close-btn:hover {
+      background: #c0392b;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.95rem;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -17,13 +218,12 @@
     <a onclick="showPage('staff')">Staff</a>
     <a onclick="openModal()">Login / Sign Up</a>
   </nav>
-  
+
   <main>
     <section id="home" class="content">
       <h2>Live Player</h2>
       <div class="player-box">
-        <iframe src="https://player.radioking.io/riverbank-radio/?c=%231e7fcb&c2=%23ffffff&f=h&i=1&p=1&s=1&alb=1&li=1&popup=1&plc=1&h=undefined&l=470&v=2"
-          frameBorder="0"></iframe>
+        <iframe src="https://player.radioking.io/riverbank-radio/?c=%231e7fcb&c2=%23ffffff&f=h&i=1&p=1&s=1&alb=1&li=1&popup=1&plc=1&h=undefined&l=470&v=2"></iframe>
       </div>
     </section>
 
@@ -33,7 +233,7 @@
     </section>
   </main>
 
-  <!-- Modal for Login/Signup -->
+  <!-- Modal -->
   <div class="modal" id="authModal">
     <div class="modal-content">
       <h3 id="modalTitle">Login</h3>
@@ -49,6 +249,74 @@
     <p>© 2025 Riverbank Radio. Streaming vibes worldwide 🌍</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    let isSignup = false;
+
+    function showPage(page) {
+      document.getElementById('home').style.display = 'none';
+      document.getElementById('staff').style.display = 'none';
+      document.getElementById(page).style.display = 'block';
+    }
+
+    function openModal() {
+      document.getElementById('authModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('authModal').style.display = 'none';
+    }
+
+    function toggleAuth() {
+      isSignup = !isSignup;
+      document.getElementById('modalTitle').innerText = isSignup ? 'Sign Up' : 'Login';
+    }
+
+    function handleAuth() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if (!username || !password) {
+        alert('Please fill all fields');
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem('users')) || [];
+
+      if (isSignup) {
+        if (users.find(u => u.username === username)) {
+          alert('Username already exists!');
+          return;
+        }
+        users.push({ username, password });
+        localStorage.setItem('users', JSON.stringify(users));
+        alert('Sign up successful! You can now log in.');
+        toggleAuth();
+      } else {
+        const user = users.find(u => u.username === username && u.password === password);
+        if (user) {
+          alert('Welcome ' + username + '!');
+          closeModal();
+        } else {
+          alert('Invalid credentials.');
+        }
+      }
+    }
+
+    // Staff Data
+    const staffData = [
+      { name: 'Alice Johnson', role: 'Station Manager' },
+      { name: 'Bob Smith', role: 'DJ' },
+      { name: 'Charlie Lee', role: 'Producer' },
+      { name: 'Dana White', role: 'Technical Support' }
+    ];
+
+    const staffList = document.getElementById('staffList');
+    staffData.forEach(member => {
+      const card = document.createElement('div');
+      card.className = 'staff-card';
+      card.innerHTML = `<h4>${member.name}</h4><p>${member.role}</p>`;
+      staffList.appendChild(card);
+    });
+  </script>
 </body>
 </html>
