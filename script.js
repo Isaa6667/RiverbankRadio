@@ -54,7 +54,8 @@ function handleAuth() {
 const staffData = [
   { name: 'Alice Johnson', role: 'Station Manager' },
   { name: 'Bob Smith', role: 'DJ' },
-  { name: 'Charlie Lee', role: 'Producer' }
+  { name: 'Charlie Lee', role: 'Producer' },
+  { name: 'Dana White', role: 'Technical Support' }
 ];
 
 const staffList = document.getElementById('staffList');
