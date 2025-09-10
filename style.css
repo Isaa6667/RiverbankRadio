@@ -1,52 +1,107 @@
+/* General */
 body {
-  font-family: Arial, sans-serif;
-  background: #f5faff;
-  color: #1e7fcb;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
   margin: 0;
-  padding: 0;
+  background: linear-gradient(135deg, #1e7fcb, #4fb0ff);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 header {
-  background: #1e7fcb;
-  color: white;
-  padding: 15px;
   text-align: center;
+  padding: 40px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
 }
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+header p {
+  margin: 5px 0 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* Navigation */
 nav {
-  background: #ffffff;
   display: flex;
   justify-content: center;
-  gap: 20px;
-  padding: 10px;
-  border-bottom: 2px solid #1e7fcb;
+  gap: 30px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
 }
 nav a {
-  color: #1e7fcb;
-  text-decoration: none;
+  color: white;
   font-weight: bold;
-  cursor: pointer;
+  text-decoration: none;
+  transition: 0.3s;
 }
 nav a:hover {
-  text-decoration: underline;
+  color: #ffeb3b;
+  transform: scale(1.05);
+}
+
+/* Content */
+main {
+  flex: 1;
+  padding: 30px;
 }
 .content {
-  padding: 20px;
   text-align: center;
 }
+h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+/* Player */
+.player-box {
+  display: flex;
+  justify-content: center;
+}
+.player-box iframe {
+  border-radius: 12px;
+  width: 470px;
+  height: 145px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  border: none;
+}
+
+/* Staff Cards */
 .staff-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 25px;
+  margin-top: 20px;
 }
 .staff-card {
-  background: white;
-  border: 1px solid #1e7fcb;
-  border-radius: 10px;
-  padding: 15px;
-  width: 200px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 15px;
+  padding: 20px;
+  width: 220px;
+  color: #fff;
+  transition: transform 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
+.staff-card:hover {
+  transform: translateY(-8px) scale(1.05);
+}
+.staff-card h4 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+}
+.staff-card p {
+  margin: 0;
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
+/* Modal */
 .modal {
   display: none;
   position: fixed;
@@ -55,30 +110,58 @@ nav a:hover {
   background: rgba(0,0,0,0.6);
   justify-content: center;
   align-items: center;
+  animation: fadeIn 0.4s ease;
 }
 .modal-content {
   background: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 300px;
+  color: #1e7fcb;
+  padding: 30px;
+  border-radius: 15px;
+  width: 320px;
   text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
-input {
+.modal-content h3 {
+  margin-top: 0;
+}
+.modal-content input {
   width: 90%;
-  padding: 8px;
-  margin: 5px 0;
-  border: 1px solid #1e7fcb;
-  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 2px solid #1e7fcb;
+  border-radius: 8px;
 }
 button {
   background: #1e7fcb;
   color: white;
   border: none;
-  padding: 10px;
+  padding: 10px 15px;
   margin-top: 10px;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background 0.3s;
 }
 button:hover {
   background: #155a8d;
+}
+.close-btn {
+  background: #ff4c4c;
+  margin-top: 15px;
+}
+.close-btn:hover {
+  background: #c0392b;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9rem;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
