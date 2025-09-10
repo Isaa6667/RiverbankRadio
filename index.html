@@ -9,24 +9,29 @@
 <body>
   <header>
     <h1>🎶 Riverbank Radio 🎶</h1>
+    <p>Your stream, your vibe</p>
   </header>
+
   <nav>
     <a onclick="showPage('home')">Home</a>
     <a onclick="showPage('staff')">Staff</a>
     <a onclick="openModal()">Login / Sign Up</a>
   </nav>
   
-  <div id="home" class="content">
-    <h2>Live Player</h2>
-    <iframe src="https://player.radioking.io/riverbank-radio/?c=%231e7fcb&c2=%23ffffff&f=h&i=1&p=1&s=1&alb=1&li=1&popup=1&plc=1&h=undefined&l=470&v=2"
-      style="border-radius: 5px; width: 470px; height: 145px; box-shadow: 0px 0px 20px rgba(0,0,0,0.3);" 
-      frameBorder="0"></iframe>
-  </div>
+  <main>
+    <section id="home" class="content">
+      <h2>Live Player</h2>
+      <div class="player-box">
+        <iframe src="https://player.radioking.io/riverbank-radio/?c=%231e7fcb&c2=%23ffffff&f=h&i=1&p=1&s=1&alb=1&li=1&popup=1&plc=1&h=undefined&l=470&v=2"
+          frameBorder="0"></iframe>
+      </div>
+    </section>
 
-  <div id="staff" class="content" style="display:none;">
-    <h2>Meet the Team</h2>
-    <div class="staff-list" id="staffList"></div>
-  </div>
+    <section id="staff" class="content" style="display:none;">
+      <h2>Meet the Team</h2>
+      <div class="staff-list" id="staffList"></div>
+    </section>
+  </main>
 
   <!-- Modal for Login/Signup -->
   <div class="modal" id="authModal">
@@ -36,9 +41,13 @@
       <input type="password" id="password" placeholder="Password">
       <button onclick="handleAuth()">Submit</button>
       <p><a href="#" onclick="toggleAuth()">Switch to Sign Up</a></p>
-      <button onclick="closeModal()">Close</button>
+      <button class="close-btn" onclick="closeModal()">Close</button>
     </div>
   </div>
+
+  <footer>
+    <p>© 2025 Riverbank Radio. Streaming vibes worldwide 🌍</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
